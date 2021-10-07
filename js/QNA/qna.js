@@ -1,0 +1,1 @@
+const LIEN_QNA = "";
