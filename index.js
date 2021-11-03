@@ -1,3 +1,7 @@
+//import * from "js/ASR/asr.js";
+//import * from "js/QNA/qna.js";
+//import * from "js/TTS/tts.js";
+
 
 function changeASR (text) {
   asrPart = getAsrPart();
