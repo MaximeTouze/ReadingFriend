@@ -63,7 +63,7 @@ function envoyer(arrayBuffer){
 			timeoutvar = setInterval(envoiData, 400);
 		}
 		//ws.send(arrayBuffer);
-	};&
+	};
 
   	ws.onclose = function(e) {
                 var code = e.code;
@@ -79,3 +79,36 @@ function envoyer(arrayBuffer){
                 console.log(data);
         }
 }
+
+
+
+
+
+  function checkAudio(){
+  	if(nbRunningSpeech > currentAudioPlaying){
+  		var i = currentAudioPlaying;
+  		if(ctxs[i].state == "suspended" || ctxs[i].state == "closed"){
+  			//demarrer l'audio
+  			ctxs[i].resume();
+  			muteUnmuteSynth();
+  			tabSources[i].start();
+  			//selectionner texte
+  			if(i>0){
+  			    prev = i-1;
+  			    elem = document.getElementsByName(prev)[0];
+                              elem.setAttribute("style", "color:#202020");
+  			}
+  			elem = document.getElementsByName(i)[0];
+  			elem.setAttribute("style", "color:#AA1111");
+  			console.log(elem);
+  		}else{
+  			//audio termine ?
+  			duration = tabDuration[i];
+  			if(ctxs[i].currentTime >= duration){
+  				tabSources[i].stop();
+  				currentAudioPlaying++;
+  				checkAudio();
+  			}
+  		}
+  	}
+  }
