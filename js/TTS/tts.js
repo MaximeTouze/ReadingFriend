@@ -98,7 +98,7 @@ LIEN_TTS = LIENS_TTS[0];
   		synthese(attenteSynth[currSynth]);
   		currSynth++;
   	}
-  	/*else if(attenteSynth.length > currSynth){
+  	else if(attenteSynth.length > currSynth){
   		console.log("(synth) HAVE TO WAIT ...");
-  	}*/
+  	}
   }
