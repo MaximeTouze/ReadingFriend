@@ -84,7 +84,7 @@ function envoyer(arrayBuffer){
 
 
 
-  function checkAudio(){
+  function checkAudio(){/*
   	if(nbRunningSpeech > currentAudioPlaying){
   		var i = currentAudioPlaying;
   		if(ctxs[i].state == "suspended" || ctxs[i].state == "closed"){
@@ -110,5 +110,5 @@ function envoyer(arrayBuffer){
   				checkAudio();
   			}
   		}
-  	}
+  	}*/
   }
