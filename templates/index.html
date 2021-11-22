@@ -29,14 +29,20 @@
     <div id = "ASR" class="asr-part page-part">
       <h1 id="ASR-title">Question posée</h1>
       <div id = "ASR-part">
-        Texte : {{params["text"]}} <br>
-        Question : {{params["question"]}}
+        asr
       </div>
     </div>
 
     <div id = "QNA" class="qna-part page-part">
-      <h1 id="QNA-title">Réponse proposée</h1>
-        <div id = "QNA-part">{{params["answer"]}}</div>
+
+      <label for="text"> Texte : </label>
+      <input type="text" id="text" name="text">
+
+      <label for="text"> Question : </label>
+      <input type="text" id="question" name="question">
+
+      <label for="answer"> Réponse : </label>
+      <p id="answer">  </p>
     </div>
   </body>
 
