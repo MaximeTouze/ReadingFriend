@@ -1,8 +1,13 @@
 
-  LIEN_TTS = "ws://lst-demo.univ-lemans.fr:8081/client/ws/synth";
+LIENS_TTS = ["ws://lst-demo.univ-lemans.fr:8081/client/ws/synth"];
+LIEN_TTS = LIENS_TTS[0];
 
   var numWS=0;
+  var tabGain=[];
 
+
+// Méthodes :
+// change le lien pour la TTS (si besoin de changer de langue par exemple)
   function changeLienTTS(url){
     LIEN_TTS = url;
   }
@@ -84,4 +89,16 @@
        }else{
          console.log("pas de worker synthese dispo ...");
        }
+  }
+
+
+  function checkSynth(){
+  	if(synthEnCours == 0 && numWS > 0 && attenteSynth.length > currSynth){
+  		console.log("GO SYNTH "+attenteSynth[currSynth]);
+  		synthese(attenteSynth[currSynth]);
+  		currSynth++;
+  	}
+  	else if(attenteSynth.length > currSynth){
+  		console.log("(synth) HAVE TO WAIT ...");
+  	}
   }
