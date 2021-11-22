@@ -34,15 +34,18 @@
     </div>
 
     <div id = "QNA" class="qna-part page-part">
-
-      <label for="text"> Texte : </label>
-      <input type="text" id="text" name="text">
-
-      <label for="text"> Question : </label>
-      <input type="text" id="question" name="question">
-
-      <label for="answer"> Réponse : </label>
-      <p id="answer">  </p>
+      <form action="/submit" method="POST">
+        <label for="text"> Texte : </label> <br>
+        <input type="text" id="text" name="text"> <br>
+        <br>
+        <label for="text"> Question : </label> <br>
+        <input type="text" id="question" name="question"> <br>
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+      <br>
+      <label for="answer"> Réponse : </label> <br>
+      <p id="answer"> {{answer}} </p>
     </div>
   </body>
 

@@ -7,18 +7,21 @@ import settings
 
 app = Flask(__name__)
 
-#@app.route("/")
-#def index():
-#    return render_template("index.html")
-
 @app.route("/")
-def test():
-    context = "BERT-large is really big ... it has 24 layers and an embedding size of 1024 for a total of 340M parameters! Altogether it is 1.34GB, so expect it to take a couple of minutes to download."
-    question = "How many parameters does BERT-large have ?"
+def index():
+    return render_template("index.html")
+
+@app.route("/submit", methods=['POST'])
+def get_answer():
+    #if request.method == 'POST':
+    context = request.form['text']
+    question = request.form['question']
 
     prediction = getAnswerBert(question, context)
 
-    return render_template("index.html", params={"text":context, "question":question, "answer":prediction})
+    return render_template("index.html", answer=prediction)
+    #else:
+    #    return render_template("index.html")
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True, port=PORT)
