@@ -84,14 +84,15 @@ function envoyer(arrayBuffer){
 
 
 
-  function checkAudio(){/*
-  	if(nbRunningSpeech > currentAudioPlaying){
+  function checkAudio(){
+  	if(microOn){
   		var i = currentAudioPlaying;
   		if(ctxs[i].state == "suspended" || ctxs[i].state == "closed"){
   			//demarrer l'audio
   			ctxs[i].resume();
   			muteUnmuteSynth();
   			tabSources[i].start();
+				console.warn("called start");
   			//selectionner texte
   			if(i>0){
   			    prev = i-1;
@@ -110,5 +111,30 @@ function envoyer(arrayBuffer){
   				checkAudio();
   			}
   		}
-  	}*/
+  	}
   }
+
+
+	function envoiData(){
+		//console.log(i);
+		if(i<nbPa){
+			if(i*rate<size){
+				length=rate;
+			}else{
+				length=size-(i*rate);
+			}
+			var toSend = new Int8Array(length);
+			for(j=i*rate,t=0; j<i*rate+length; j++, t++){
+				toSend[t]=vue[j];
+			}
+			i++;
+			ws.send(toSend);
+			if (i==1){
+				var sound = document.getElementById('sound');
+				sound.controls = false;
+	    			sound.play();
+			}
+		}else{
+			clearInterval(timeoutvar);
+		}
+	}

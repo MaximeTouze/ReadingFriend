@@ -3,6 +3,7 @@ var bufferSize = 2048;
 var numberOfInputChannels = 1;
 var numberOfOutputChannels = 1;
 var recordedAudio = [];
+var microOn = false;
 
 askUserAgreementForMicrophone();
 
@@ -33,6 +34,7 @@ function userAgreementRefused(error) {
 function userAgreementAuthorized(micro) {
 console.log("Utilisation du micro autorisée", micro);
   microphone = micro;
+  microOn = true;
   init_inputBuffer(micro);
 }
 
