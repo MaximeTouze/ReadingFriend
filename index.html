@@ -17,6 +17,7 @@
     <script type="text/javaScript" src="js/QNA/qna.js"></script>
     <script type="text/javaScript" src="js/TTS/tts.js"></script>
     <script type="text/javaScript" src="js/ihm/ihm.js"></script>
+    <script type="text/javaScript" src="js/common.js"></script>
 
 
   </head>
@@ -38,14 +39,23 @@
   </body>
 
 
-  <button onclick="envoyer(null)"> ASR </button>
+  <button onclick="envoyer(recordedAudio)"> ASR </button>
   <button onclick="synthese('Here is a simple TTS test')"> TTS </button>
+  <button onclick="console.log(recordedAudio)"> Affiches l enregistrement </button>
+
+  <button onclick="changeChamps()"> ChangeChamps </button>
+
+  <footer>
+    <div id="num_workers">Workers : ....</div>
+    <div id="num_workers_synth">Workers TTS : ....</div>
+  </footer>
 
   <script type="text/javaScript">
     changeASR("hyyyyyyyyyyyyyyeppeezahdapi zuazdazudazudiauhdipuazhd pauz hpiu hazuih aipudh oahodzhua hdpazu hpiuauh zpiuhd paz hdpiuazh pdiuazh dpiuazhdp hdazpiudh azpuhd pauzh dpiuazh dpiuazh ppiuduah ziuph dzapu udhazph ");
     changeQNA("azdjiaz hdâiozh oia hiuh iaudg idbjhwjkywg ljl li ieu  uheu aih iu hhfdsk fkmjds hfmshdmf zp foeifiif eufyu agi hhuahnsj ndqb vxw, ckvj,k jmz vb;j: welkhkie jhlufe umuf ze ihezo hfoezi zoif oiezhf oiez hfhzeo");
 
   </script>
+
 
 
 </html>

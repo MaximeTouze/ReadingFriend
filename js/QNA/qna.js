@@ -48,3 +48,7 @@ function trad(texte){
 	ajaxRequest.open("GET", url, true);
 	ajaxRequest.send(null);
 }
+
+function checkQna() {
+
+}

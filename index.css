@@ -27,5 +27,6 @@
   font-size: 20px;
   display: inline-block;
   position: absolute;
-  max-width: 25%
+  max-width: 25%;
+  margin-top: 15px;
 }

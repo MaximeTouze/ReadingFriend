@@ -13,10 +13,16 @@ function changeQNA (text) {
   qnaPart.innerHTML = text;
 }
 
+// retourne l'element du DOM correspondant à la partie ASR
 function getAsrPart () {
   return document.getElementById('ASR-part');
 }
 
+// retourne l'élément du DOM correspondant à la partie QNA
 function getQnaPart () {
   return document.getElementById('QNA-part');
+}
+
+function changeChamps() {
+  getAsrPart().innerHTML = '<input type="text" style="width:175%; height: 200%"/>';
 }
