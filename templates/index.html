@@ -6,17 +6,17 @@
     <meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-    <link rel="icon" type="image/png" href="images/favicon.png"/>
+    <link rel="icon" type="image/png" href="../images/favicon.png"/>
     <title>My Reading Friend</title>
 
-    <link rel="stylesheet" href="index.css"/>
-    <script type="text/javaScript" src="index.js"></script>
+    <link rel="stylesheet" href="../index.css"/>
+    <script type="text/javaScript" src="../index.js"></script>
 
 
-    <script type="text/javaScript" src="js/ASR/asr.js"></script>
-    <script type="text/javaScript" src="js/QNA/qna.js"></script>
-    <script type="text/javaScript" src="js/TTS/tts.js"></script>
-    <script type="text/javaScript" src="js/ihm/ihm.js"></script>
+    <script type="text/javaScript" src="../js/ASR/asr.js"></script>
+    <script type="text/javaScript" src="../js/QNA/qna.js"></script>
+    <script type="text/javaScript" src="../js/TTS/tts.js"></script>
+    <script type="text/javaScript" src="../js/ihm/ihm.js"></script>
 
 
   </head>
@@ -28,12 +28,24 @@
 
     <div id = "ASR" class="asr-part page-part">
       <h1 id="ASR-title">Question posée</h1>
-      <div id = "ASR-part">bla</div>
+      <div id = "ASR-part">
+        asr
+      </div>
     </div>
 
     <div id = "QNA" class="qna-part page-part">
-      <h1 id="QNA-title">Réponse proposée</h1>
-        <div id = "QNA-part">bli</div>
+      <form action="/submit" method="POST">
+        <label for="text"> Texte : </label> <br>
+        <input type="text" id="text" name="text"> <br>
+        <br>
+        <label for="text"> Question : </label> <br>
+        <input type="text" id="question" name="question"> <br>
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+      <br>
+      <label for="answer"> Réponse : </label> <br>
+      <p id="answer"> {{answer}} </p>
     </div>
   </body>
 
