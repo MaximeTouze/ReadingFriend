@@ -6,17 +6,17 @@
     <meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-    <link rel="icon" type="image/png" href="../images/favicon.png"/>
+    <link rel="icon" type="image/png" href="../static/img/favicon.png"/>
     <title>My Reading Friend</title>
 
-    <link rel="stylesheet" href="../index.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"/>
     <script type="text/javaScript" src="../index.js"></script>
 
 
-    <script type="text/javaScript" src="../js/ASR/asr.js"></script>
-    <script type="text/javaScript" src="../js/QNA/qna.js"></script>
-    <script type="text/javaScript" src="../js/TTS/tts.js"></script>
-    <script type="text/javaScript" src="../js/ihm/ihm.js"></script>
+    <script type="text/javaScript" src="../static/js/ASR/asr.js"></script>
+    <script type="text/javaScript" src="../static/js/QNA/qna.js"></script>
+    <script type="text/javaScript" src="../static/js/TTS/tts.js"></script>
+    <script type="text/javaScript" src="../static/js/ihm/ihm.js"></script>
 
 
   </head>
@@ -34,16 +34,53 @@
     </div>
 
     <div id = "QNA" class="qna-part page-part">
+      <select id="book_list">
+      </select>
+
+      <!--<script>
+        var x = function(a,b,c)
+        {
+          c = new XMLHttpRequest;
+          c.open('GET', a);
+          c.onload = b;
+          c.send()
+        }
+
+        var display = function()
+        {
+          var books = JSON.parse(this.response);
+
+          document.write(books)
+
+          for(let book of books)
+          {
+            var select = document.getElementById("book_list");
+            var length = select.length;
+            document.book_list[length] = new Option(book);
+          }
+        }
+
+        window.onload = function()
+        {
+          x('../static/books.php', display);
+        }
+      </script>-->
+
+      <br>
+      <br>
+
       <form action="/submit" method="POST">
         <label for="text"> Texte : </label> <br>
-        <input type="text" id="text" name="text"> <br>
+        <textarea rows="5" cols="80" id="text" name="text"> </textarea>
         <br>
         <label for="text"> Question : </label> <br>
         <input type="text" id="question" name="question"> <br>
         <br>
         <input type="submit" value="Submit">
       </form>
+
       <br>
+
       <label for="answer"> Réponse : </label> <br>
       <p id="answer"> {{answer}} </p>
     </div>
