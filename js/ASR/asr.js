@@ -83,16 +83,16 @@ function envoyer(arrayBuffer){
 
 
 
-
+// Modifications pour le suivi de mots et l'avancée de la synth ?
   function checkAudio(){
   	if(microOn){
-  		var i = currentAudioPlaying;
-  		if(ctxs[i].state == "suspended" || ctxs[i].state == "closed"){
+  		//var i = currentAudioPlaying;
+  		//if(ctxs[i].state == "suspended" || ctxs[i].state == "closed"){
   			//demarrer l'audio
-  			ctxs[i].resume();
-  			muteUnmuteSynth();
-  			tabSources[i].start();
-				console.warn("called start");
+  			//ctxs[i].resume();
+  			//muteUnmuteSynth();
+  			//tabSources[i].start();
+				//console.warn("called start");
   			//selectionner texte
   			// if(i>0){
   			//     prev = i-1;
@@ -110,7 +110,7 @@ function envoyer(arrayBuffer){
   		// 		currentAudioPlaying++;
   		// 		checkAudio();
   		// 	}
-  		}
+  		//}
   	}
   }
 
