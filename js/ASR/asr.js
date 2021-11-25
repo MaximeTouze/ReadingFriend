@@ -94,22 +94,22 @@ function envoyer(arrayBuffer){
   			tabSources[i].start();
 				console.warn("called start");
   			//selectionner texte
-  			if(i>0){
-  			    prev = i-1;
-  			    elem = document.getElementsByName(prev)[0];
-                              elem.setAttribute("style", "color:#202020");
-  			}
-  			elem = document.getElementsByName(i)[0];
-  			elem.setAttribute("style", "color:#AA1111");
-  			console.log(elem);
-  		}else{
-  			//audio termine ?
-  			duration = tabDuration[i];
-  			if(ctxs[i].currentTime >= duration){
-  				tabSources[i].stop();
-  				currentAudioPlaying++;
-  				checkAudio();
-  			}
+  			// if(i>0){
+  			//     prev = i-1;
+  			//     elem = document.getElementsByName(prev)[0];
+        //                       elem.setAttribute("style", "color:#202020");
+  			// }
+  			//elem = document.getElementsByName(i)[0];
+  			//elem.setAttribute("style", "color:#AA1111");
+  			//console.log(elem);
+  		// }else{
+  		// 	//audio termine ?
+  		// 	duration = tabDuration[i];
+  		// 	if(ctxs[i].currentTime >= duration){
+  		// 		tabSources[i].stop();
+  		// 		currentAudioPlaying++;
+  		// 		checkAudio();
+  		// 	}
   		}
   	}
   }

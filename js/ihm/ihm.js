@@ -1,7 +1,14 @@
+// Taille du buffer
+const AUDIO_BUFFER_SIZE = 1000;
+
+// ref du micro
 var microphone = null;
 var bufferSize = 2048;
+
+// Stereo ou non
 var numberOfInputChannels = 1;
 var numberOfOutputChannels = 1;
+// Buffer Audio
 var recordedAudio = [];
 var microOn = false;
 
@@ -54,9 +61,9 @@ function init_inputBuffer(micro) {
    } else {
    recorder = context.createJavaScriptNode(bufferSize, numberOfInputChannels, numberOfOutputChannels);
    }
-   recorder.onaudioprocess = function (micro) {
+   recorder.onaudioprocess = function (micro) { // Pour pas que le buffer ne soit trop gros
       recordedAudio.push(new Float32Array(micro.inputBuffer.getChannelData(0)));
-      if(recordedAudio.length > 1000){
+      if(recordedAudio.length > AUDIO_BUFFER_SIZE){
         recordedAudio.shift();
       }
       console.log("on audio progress");
