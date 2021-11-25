@@ -14,7 +14,7 @@ askUserAgreementForMicrophone();
 // Ask the user for the permission to listen the microphone
 //
 function askUserAgreementForMicrophone() {
-  navigator.getUserMedia = navigator.getUserMedia ||
+  navigator.getUserMedia = navigator.mediaDevices.getUserMedia ||
      navigator.webkitGetUserMedia ||
      navigator.mozGetUserMedia ||
      navigator.msGetUserMedia;
