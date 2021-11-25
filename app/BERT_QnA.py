@@ -99,7 +99,7 @@ def getBestAnswer(question, potentials):
     c = pd.DataFrame(potentials)
     c['sim'] = c[0].apply(lambda x: getSim(q, x))
     max = c.sort_values(by='sim', ascending=False).iloc[:3]
-    return max[0]
+    return max[0].to_string(index=False)
 
 
 
