@@ -174,3 +174,9 @@ def getAnswerBert(question, context):
     # print('Potential Answers: \n')
     # print(answer.head())
     return answer
+
+context = "Paris is in France"
+question = "Where is Paris"
+
+answer = getAnswerBert(question, context)
+print(answer)
