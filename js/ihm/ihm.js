@@ -18,7 +18,7 @@ function askUserAgreementForMicrophone() {
      navigator.webkitGetUserMedia ||
      navigator.mozGetUserMedia ||
      navigator.msGetUserMedia;
-  navigator.getUserMedia(
+  navigator.mediaDevices.getUserMedia(
   {
      audio: true
   },
@@ -27,7 +27,7 @@ function askUserAgreementForMicrophone() {
 }
 
 function userAgreementRefused(error) {
-    window.alert("Warning, You refused the microphone usage for this website, it may not works.");
+    window.alert("Warning, You refused the microphone usage for this website, it may not work.");
      console.error(error);
 }
 
