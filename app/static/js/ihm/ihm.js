@@ -40,7 +40,7 @@ console.log("Utilisation du micro autorisée", micro);
 
 //
 // Read functions ::
-//
+// TEST
 function init_inputBuffer(micro) {
    // creates the audio context
    window.AudioContext = window.AudioContext || window.webkitAudioContext;
