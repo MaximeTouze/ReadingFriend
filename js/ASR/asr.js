@@ -1,4 +1,4 @@
-LIEN_ASR = "ws://lst-demo.univ-lemans.fr:8889/client/ws/speech";
+LIEN_ASR = "ws://lst-demo.univ-lemans.fr:8888/client/ws/speech";
 
 function changeLienASR(url){
 	LIEN_ASR = url;
@@ -13,8 +13,9 @@ function envoyer(arrayBuffer){
 	var partial_trs=document.getElementsByName("partial_trs")[0];
 	var corps=document.getElementsByName("corps")[0];
         ws.onmessage = function(e) {
+								console.log('message', e);
                 var data = e.data;
-              //  console.log(data);
+              	console.log('data', data);
                 if (data instanceof Object && ! (data instanceof Blob)) {
                         console.log('WebSocket: onEvent: got Object that is not a Blob');
                 } else if (data instanceof Blob) {
@@ -31,7 +32,7 @@ function envoyer(arrayBuffer){
 							trs = trs.replace("ten the page", "turn the page");
 							corps.innerHTML += "<div>"+trs+"</div><br/>";
 							corps.scrollTop = corps.scrollHeight;
-							trad(trs);
+							//trad(trs);
 						}
                                         } else {
 						for(h=0; h<res.result.hypotheses.length; h++){
@@ -55,14 +56,15 @@ function envoyer(arrayBuffer){
 		rate = 32000;
 		size = arrayBuffer.byteLength;
 		nbPa = Math.ceil(size/rate);
-		console.log(size);
-		console.log(nbPa);
+		console.log('bufferSize', size);
+		console.log('nbPa', nbPa);
 		if(nbPa >= 1){
 			vue = new Int8Array(arrayBuffer);
 			i=0;
 			timeoutvar = setInterval(envoiData, 400);
 		}
-		//ws.send(arrayBuffer);
+		ws.send(arrayBuffer);
+		console.log("Message envoyé");
 	};
 
   	ws.onclose = function(e) {
@@ -71,12 +73,12 @@ function envoyer(arrayBuffer){
                 var wasClean = e.wasClean;
                 // The server closes the connection (only?)
                 // when its endpointer triggers.
-                console.log(e.code + "/" + e.reason + "/" + e.wasClean);
+                console.log('ws close : ', e.code + "/" + e.reason + "/" + e.wasClean);
         };
 
         ws.onerror = function(e) {
                 var data = e.data;
-                console.log(data);
+                console.log('error', data);
         }
 }
 

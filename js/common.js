@@ -15,21 +15,21 @@
           var MSG_WEB_SOCKET_CLOSE = 10;
           var MSG_STOP = 11;
           var MSG_SERVER_CHANGED = 12;
-  	var wsServerStatus = new WebSocket("ws://lst-demo.univ-lemans.fr:8889/client/ws/status");
-  	wsServerStatus.onmessage = function(evt) {
-  		     var elem=document.getElementById("num_workers");
-  		     var num = JSON.parse(evt.data).num_workers_available;
-  		     elem.innerHTML = "Nb workers dispo : "+num;
-           console.log("Nb workers dispo : "+num);
-  		     if(num>0){
-  			        readNext();
-  		     }
-          };
-          wsServerStatus.onerror = function (e) {
-        		var elem=document.getElementById("num_workers");
-        		elem.innerHTML = "Nb workers dispo : ERROR";
-            console.error("erreur lors du contact du status", e);
-          }
+  	// var wsServerStatus = new WebSocket("ws://lst-demo.univ-lemans.fr:8889/client/ws/status");
+  	// wsServerStatus.onmessage = function(evt) {
+  	// 	     var elem=document.getElementById("num_workers");
+  	// 	     var num = JSON.parse(evt.data).num_workers_available;
+  	// 	     elem.innerHTML = "Nb workers dispo : "+num;
+    //        console.log("Nb workers dispo : "+num);
+  	// 	     if(num>0){
+  	// 		        readNext();
+  	// 	     }
+    //       };
+    //       wsServerStatus.onerror = function (e) {
+    //     		var elem=document.getElementById("num_workers");
+    //     		elem.innerHTML = "Nb workers dispo : ERROR";
+    //         console.error("erreur lors du contact du status", e);
+    //       }
 
 
 
