@@ -60,10 +60,10 @@ function init_inputBuffer(micro) {
         recordedAudio.shift();
       }
       console.log("on audio progress");
-   }
-   // we connect the recorder with the input stream
-   mediaStream.connect(recorder);
-   recorder.connect(context.destination);
+    }
+    // we connect the recorder with the input stream
+    mediaStream.connect(recorder);
+    recorder.connect(context.destination);
 }
 
 
