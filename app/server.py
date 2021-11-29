@@ -27,7 +27,7 @@ def get_answer():
     question = request.form['question']
 
     # Finds the question's answer in the text (using a BERT model)
-    prediction = "test" #getAnswerBert(question, context)
+    prediction = "Phrase de test" #getAnswerBert(question, context)
 
     # Sends question's answer, file list and text list
     return render_template("index.html", answer=prediction, book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts()))
