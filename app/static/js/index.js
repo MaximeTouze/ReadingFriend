@@ -10,7 +10,8 @@ function changeASR (text) {
 
 function changeQNA (text) {
   qnaPart = getQnaPart();
-  qnaPart.innerHTML = text;
+  console.log(typeof qnaPart)
+  //qnaPart.innerHTML = text;
 }
 
 // retourne l'element du DOM correspondant à la partie ASR
@@ -20,7 +21,7 @@ function getAsrPart () {
 
 // retourne l'élément du DOM correspondant à la partie QNA
 function getQnaPart () {
-  return document.getElementById('QNA-part');
+  return document.getElementById('answer');
 }
 
 function changeChamps() {
