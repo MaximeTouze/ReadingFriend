@@ -86,7 +86,7 @@ function synthese(texte)
 			}
             else
             {
-				console.log(res);
+				//console.log(res);
 			}
 		}
 
