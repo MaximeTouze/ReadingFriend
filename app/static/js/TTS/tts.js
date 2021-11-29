@@ -99,6 +99,8 @@ function synthese(texte)
 				type: "message",
 				text: texte,
 			};
+            console.log(url);
+            console.log(wsSynth);
 			wsSynth.send(JSON.stringify(msg));
 		};
 
