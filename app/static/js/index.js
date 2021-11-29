@@ -10,7 +10,6 @@ function changeASR (text) {
 
 function changeQNA (text) {
   qnaPart = getQnaPart();
-  console.log(typeof qnaPart)
   //qnaPart.innerHTML = text;
 }
 
