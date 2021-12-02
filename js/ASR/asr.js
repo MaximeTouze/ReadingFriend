@@ -1,4 +1,8 @@
-LIEN_ASR = "ws://lst-demo.univ-lemans.fr:8888/client/ws/speech";
+const LIEN_ASR = "ws://lst-demo.univ-lemans.fr:8888/client/ws/speech";
+
+const START_MESSAGE = "Hey ready";
+const END_MESSAGE = "please"
+
 
 function changeLienASR(url){
 	LIEN_ASR = url;
@@ -59,7 +63,7 @@ function envoyer(arrayBuffer){
 		console.log('bufferSize', size);
 		console.log('nbPa', nbPa);
 		if(nbPa >= 1){
-			vue = new Int8Array(arrayBuffer);
+			vue = new Uint8Array(arrayBuffer);
 			i=0;
 			timeoutvar = setInterval(envoiData, 400);
 		}
@@ -73,6 +77,7 @@ function envoyer(arrayBuffer){
                 var wasClean = e.wasClean;
                 // The server closes the connection (only?)
                 // when its endpointer triggers.
+								console.log(e);
                 console.log('ws close : ', e.code + "/" + e.reason + "/" + e.wasClean);
         };
 
@@ -140,3 +145,32 @@ function envoyer(arrayBuffer){
 			clearInterval(timeoutvar);
 		}
 	}
+
+
+// returns the question: without the beginning and the end tokens
+	function getQuote (text) {
+
+
+		const start_index = getStartIndex(text);
+		const end_index = getEndIndex(text);
+
+		return text.substring(start_index, end_index);
+
+	}
+
+	function hasQuote (text) {
+		return (getStartIndex(text) !== -1 && getEndIndex(text) !== -1);  
+	}
+
+// methode adaptable
+	function getStartIndex (text) {
+		// On décale le début du texe à apres le message de début. on enleve aussi l espace
+		return text.lastIndexOf(START_MESSAGE) + START_MESSAGE.length + 1;
+	}
+// méthode adaptable
+function getEndIndex (text) {
+	// le message se finit avant l'espace placé devant le message de fin
+	return text.lastIndexOf(END_MESSAGE) -1;
+}
+
+console.log(getQuote("testtttt" + START_MESSAGE + " what's the Sherlock Holmes Story " + END_MESSAGE + "Tesssssstttt"));

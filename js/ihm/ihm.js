@@ -35,7 +35,7 @@ function askUserAgreementForMicrophone() {
 
 function userAgreementRefused(error) {
     window.alert("Warning, You refused the microphone usage for this website, it may not works.");
-     console.error(error);
+     console.warn(error);
 }
 
 function userAgreementAuthorized(micro) {
