@@ -10,7 +10,7 @@ function changeASR (text) {
 
 function changeQNA (text) {
   qnaPart = getQnaPart();
-  //qnaPart.innerHTML = text;
+  qnaPart.innerHTML = text;
 }
 
 // retourne l'element du DOM correspondant à la partie ASR

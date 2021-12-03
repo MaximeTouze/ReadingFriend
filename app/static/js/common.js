@@ -20,9 +20,9 @@
   		     var num = JSON.parse(evt.data).num_workers_available;
   		     elem.innerHTML = "Nb workers dispo : "+num;
            console.log("Nb workers dispo : "+num);
-  		     if(num>0){
-  			        readNext();
-  		     }
+  		     //if(num>0){
+  			 //       readNext();
+  		     //}
           };
           wsServerStatus.onerror = function (e) {
         		var elem=document.getElementById("num_workers");

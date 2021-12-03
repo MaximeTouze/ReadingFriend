@@ -1,7 +1,7 @@
 # flask_app/server.py​
 from flask import Flask, request, jsonify, render_template, session, url_for, redirect
 from flask_dropzone import Dropzone
-#from BERT_QnA import getAnswerBert
+from BERT_QnA2 import getAnswerBert
 
 import settings
 import glob
@@ -27,7 +27,7 @@ def get_answer():
     question = request.form['question']
 
     # Finds the question's answer in the text (using a BERT model)
-    prediction = "Phrase de test" #getAnswerBert(question, context)
+    prediction = getAnswerBert(question, context)
 
     # Sends question's answer, file list and text list
     return render_template("index.html", answer=prediction, book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts()))
