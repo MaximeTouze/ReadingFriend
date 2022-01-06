@@ -29,6 +29,13 @@ def get_answer():
     # Finds the question's answer in the text (using a BERT model)
     prediction = getAnswerBert(question, context)
 
+    # Fills TTS file with answer
+    with open('./tts/sentence.txt', 'w') as f:
+        f.write(prediction)
+
+    # Runs TTS
+    os.system("python ./deepvoice3_pytorch/synthesis.py --preset=./deepvoice3_pytorch/presets/20180505_deepvoice3_ljspeech.json ./deepvoice3_pytorch/checkpoints/20180505_deepvoice3_checkpoint_step000640000.pth ./tts/sentences.txt ./tts")
+
     # Sends question's answer, file list and text list
     return render_template("index.html", answer=prediction, book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts()))
 
