@@ -38,7 +38,7 @@ def get_answer():
 
     # Plays wav file (TTS) and then deletes it (+ png generated file)
     os.system('aplay ./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav')
-    os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")
+    #os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")
     os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000_alignment.png")
 
     # Sends question's answer, file list and text list
