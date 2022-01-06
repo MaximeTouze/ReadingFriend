@@ -8,6 +8,7 @@ import glob
 import os
 import sys
 import json
+import playsound
 
 app = Flask(__name__)
 
@@ -37,8 +38,8 @@ def get_answer():
     os.system("python ./deepvoice3_pytorch/synthesis.py --preset=./deepvoice3_pytorch/presets/20180505_deepvoice3_ljspeech.json ./deepvoice3_pytorch/checkpoints/20180505_deepvoice3_checkpoint_step000640000.pth ./tts/sentences.txt ./tts")
 
     # Plays wav file (TTS) and then deletes it (+ png generated file)
-    os.system('aplay ./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav')
-    #os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")
+    playsound.playsound("./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav", True)
+    os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")
     os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000_alignment.png")
 
     # Sends question's answer, file list and text list
