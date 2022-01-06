@@ -30,7 +30,7 @@ def get_answer():
     prediction = getAnswerBert(question, context)
 
     # Fills TTS file with answer
-    with open('./tts/sentence.txt', 'w') as f:
+    with open('./tts/sentences.txt', 'w') as f:
         f.write(prediction)
 
     # Runs TTS
