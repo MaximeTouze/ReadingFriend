@@ -39,9 +39,6 @@ def get_answer():
     # Generates wav file from anwser (TTS)
     os.system("python ./deepvoice3_pytorch/synthesis.py --preset=./deepvoice3_pytorch/presets/20180505_deepvoice3_ljspeech.json ./deepvoice3_pytorch/checkpoints/20180505_deepvoice3_checkpoint_step000640000.pth ./tts/sentences.txt ./tts")
 
-    # Files deletion
-    delete_audio_files()
-
     # Sends question's answer, file list and text list
     return render_template("index.html", answer=prediction, book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts()), audio_path="./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")
 
@@ -68,9 +65,12 @@ def get_books_texts():
 
 # Deletes audio file is it exists (+ png generated file)
 def delete_audio_files():
-    if(os.path.isfile("./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")):
-        os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")
-        os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000_alignment.png")
+    i = 0
+
+    while(os.path.isfile("./tts/" + i + "_20180505_deepvoice3_checkpoint_step000640000.wav")):
+        os.system("rm ./tts/" + i + "_20180505_deepvoice3_checkpoint_step000640000.wav")
+        os.system("rm ./tts/" + i + "_20180505_deepvoice3_checkpoint_step000640000_alignment.png")
+        i++
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True, port=PORT)
