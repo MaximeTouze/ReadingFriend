@@ -36,6 +36,9 @@ def get_answer():
     with open('./tts/sentences.txt', 'w') as f:
         f.write(prediction)
 
+    # Files deletion
+    delete_audio_files()
+
     # Generates wav file from anwser (TTS)
     os.system("python ./deepvoice3_pytorch/synthesis.py --preset=./deepvoice3_pytorch/presets/20180505_deepvoice3_ljspeech.json ./deepvoice3_pytorch/checkpoints/20180505_deepvoice3_checkpoint_step000640000.pth ./tts/sentences.txt ./static")
 
