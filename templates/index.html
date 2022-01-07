@@ -90,7 +90,9 @@
 
 
   <button onclick="envoyer(null)"> ASR </button>
-  <button onclick="synthese('Here is a simple TTS test')"> TTS </button>
+  <!--<button onclick="synthese('Here is a simple TTS test')"> TTS </button>-->
+  <audio id="tts_file" src="./../app/tts/0_20180505_deepvoice3_checkpoint_step000640000.wav" preload="auto"></audio>
+  <button onclick="document.getElementById('tts_file').play();">TTS</button>
 
   <script type="text/javaScript">
     changeASR("hyyyyyyyyyyyyyyeppeezahdapi zuazdazudazudiauhdipuazhd pauz hpiu hazuih aipudh oahodzhua hdpazu hpiuauh zpiuhd paz hdpiuazh pdiuazh dpiuazhdp hdazpiudh azpuhd pauzh dpiuazh dpiuazh ppiuduah ziuph dzapu udhazph ");
