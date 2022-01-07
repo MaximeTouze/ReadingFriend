@@ -1,5 +1,5 @@
 # flask_app/server.py​
-from flask import Flask, request, jsonify, render_template, session, url_for, redirect
+from flask import Flask, request, jsonify, render_template, session, url_for, redirect, send_file
 from flask_dropzone import Dropzone
 #from BERT_QnA2 import getAnswerBert
 
