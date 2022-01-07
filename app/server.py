@@ -31,7 +31,7 @@ def get_answer():
 
     # Finds the question's answer in the text (using a BERT model)
     #prediction = getAnswerBert(question, context)
-    prediciton = "holmes"
+    prediction = "holmes"
 
     # Fills TTS file with answer
     with open('./tts/sentences.txt', 'w') as f:
