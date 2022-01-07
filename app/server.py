@@ -41,11 +41,8 @@ def get_answer():
     os.system("python ./deepvoice3_pytorch/synthesis.py --preset=./deepvoice3_pytorch/presets/20180505_deepvoice3_ljspeech.json ./deepvoice3_pytorch/checkpoints/20180505_deepvoice3_checkpoint_step000640000.pth ./tts/sentences.txt ./tts")
 
     # Sends question's answer, file list and text list
-    return render_template("index.html", answer=prediction, book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts()))
-
-@app.route('/return-files/')
-def send_audio():
-    return send_file("./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav", mimetype="audio/wav", as_attachment=True, attachment_filename="0_20180505_deepvoice3_checkpoint_step000640000.wav")
+    return render_template("index.html", answer=prediction, book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts())),
+        send_file("./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav", mimetype="audio/wav", as_attachment=True, attachment_filename="0_20180505_deepvoice3_checkpoint_step000640000.wav")
 
 # Returns a list containing all file names representing a book stored on the website
 def get_books_files():
