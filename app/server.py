@@ -8,7 +8,6 @@ import glob
 import os
 import sys
 import json
-import playsound
 
 app = Flask(__name__)
 
@@ -17,6 +16,9 @@ path = "static/books"
 # Renders the page before a valid form submition
 @app.route("/")
 def index():
+    # Files deletion
+    delete_audio_files()
+
     # Sends file list and text list
     return render_template("index.html", book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts()))
 
@@ -37,13 +39,11 @@ def get_answer():
     # Generates wav file from anwser (TTS)
     os.system("python ./deepvoice3_pytorch/synthesis.py --preset=./deepvoice3_pytorch/presets/20180505_deepvoice3_ljspeech.json ./deepvoice3_pytorch/checkpoints/20180505_deepvoice3_checkpoint_step000640000.pth ./tts/sentences.txt ./tts")
 
-    # Plays wav file (TTS) and then deletes it (+ png generated file)
-    playsound.playsound("./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav", True)
-    os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")
-    os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000_alignment.png")
+    # Files deletion
+    delete_audio_files()
 
     # Sends question's answer, file list and text list
-    return render_template("index.html", answer=prediction, book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts()))
+    return render_template("index.html", answer=prediction, book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts()), audio_path="./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")
 
 # Returns a list containing all file names representing a book stored on the website
 def get_books_files():
@@ -65,6 +65,12 @@ def get_books_texts():
                 text_list.append(filename.read())
 
     return text_list
+
+# Deletes audio file is it exists (+ png generated file)
+def delete_audio_files():
+    if(os.path.isfile("./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")):
+        os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav")
+        os.system("rm ./tts/0_20180505_deepvoice3_checkpoint_step000640000_alignment.png")
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True, port=PORT)
