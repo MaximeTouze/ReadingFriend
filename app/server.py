@@ -1,7 +1,7 @@
 # flask_app/server.py​
 from flask import Flask, request, jsonify, render_template, session, url_for, redirect
 from flask_dropzone import Dropzone
-from BERT_QnA2 import getAnswerBert
+#from BERT_QnA2 import getAnswerBert
 
 import settings
 import glob
@@ -30,7 +30,8 @@ def get_answer():
     question = request.form['question']
 
     # Finds the question's answer in the text (using a BERT model)
-    prediction = getAnswerBert(question, context)
+    #prediction = getAnswerBert(question, context)
+    prediciton = "holmes"
 
     # Fills TTS file with answer
     with open('./tts/sentences.txt', 'w') as f:
