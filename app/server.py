@@ -38,7 +38,7 @@ def get_answer():
         f.write(prediction)
 
     # Generates wav file from anwser (TTS)
-    os.system("python ./deepvoice3_pytorch/synthesis.py --preset=./deepvoice3_pytorch/presets/20180505_deepvoice3_ljspeech.json ./deepvoice3_pytorch/checkpoints/20180505_deepvoice3_checkpoint_step000640000.pth ./tts/sentences.txt ./static/audio")
+    os.system("python ./deepvoice3_pytorch/synthesis.py --preset=./deepvoice3_pytorch/presets/20180505_deepvoice3_ljspeech.json ./deepvoice3_pytorch/checkpoints/20180505_deepvoice3_checkpoint_step000640000.pth ./tts/sentences.txt ./static")
 
     # Sends question's answer, file list and text list
     return render_template("index.html", answer=prediction, book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts()))
@@ -68,9 +68,9 @@ def get_books_texts():
 def delete_audio_files():
     i = 0
 
-    while(os.path.isfile("./static/audio/" + str(i) + "_20180505_deepvoice3_checkpoint_step000640000.wav")):
-        os.system("rm ./static/audio/" + str(i) + "_20180505_deepvoice3_checkpoint_step000640000.wav")
-        os.system("rm ./static/audio/" + str(i) + "_20180505_deepvoice3_checkpoint_step000640000_alignment.png")
+    while(os.path.isfile("./static/" + str(i) + "_20180505_deepvoice3_checkpoint_step000640000.wav")):
+        os.system("rm ./static/" + str(i) + "_20180505_deepvoice3_checkpoint_step000640000.wav")
+        os.system("rm ./static/" + str(i) + "_20180505_deepvoice3_checkpoint_step000640000_alignment.png")
         i += 1
 
 if __name__ == '__main__':
