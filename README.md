@@ -13,3 +13,5 @@ pip install -r requirements.txt
 # Rediriger le localhost de la machine compagnon@lecturefriend sur sa machine
 ssh -NL 8080:localhost:5000 compagnon@lecturefriend
 Se connecter au site à l'adresse 127.0.0.1:8080 (utiliser le port spécifié dans la commande)
+
+# sudo apt-get install libcairo2-dev libjpeg-dev libgif-dev
