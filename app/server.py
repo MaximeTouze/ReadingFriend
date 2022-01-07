@@ -43,7 +43,7 @@ def get_answer():
     # Sends question's answer, file list and text list
     return render_template("index.html", answer=prediction, book_list=json.dumps(get_books_files()), book_text_list=json.dumps(get_books_texts()))
 
-@app.route('/path')
+@app.route('/return-files')
 def view_method():
      return send_file(
          "./tts/0_20180505_deepvoice3_checkpoint_step000640000.wav",
