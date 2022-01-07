@@ -67,7 +67,7 @@ def get_books_texts():
 def delete_audio_files():
     i = 0
 
-    while(os.path.isfile("./tts/" + i + "_20180505_deepvoice3_checkpoint_step000640000.wav")):
+    while(os.path.isfile("./tts/" + str(i) + "_20180505_deepvoice3_checkpoint_step000640000.wav")):
         os.system("rm ./tts/" + str(i) + "_20180505_deepvoice3_checkpoint_step000640000.wav")
         os.system("rm ./tts/" + str(i) + "_20180505_deepvoice3_checkpoint_step000640000_alignment.png")
         i += 1
