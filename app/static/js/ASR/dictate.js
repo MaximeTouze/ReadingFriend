@@ -8,7 +8,7 @@
 	// Send blocks 4 x per second as recommended in the server doc.
 	var INTERVAL = 250;
 	var TAG_END_OF_SENTENCE = "EOS";
-	var RECORDER_WORKER_PATH = 'recorderWorker.js';
+	var RECORDER_WORKER_PATH = 'static/js/ASR/recorderWorker.js';
 
 	// Error codes (mostly following Android error names and codes)
 	var ERR_NETWORK = 2;
@@ -47,7 +47,7 @@
 		config.referenceHandler = config.referenceHandler || REFERENCE_HANDLER;
 		config.contentType = config.contentType || CONTENT_TYPE;
 		config.interval = config.interval || INTERVAL;
-		config.recorderWorkerPath = /*config.recorderWorkerPath || RECORDER_WORKER_PATH*/'js/ASR/recorderWorker.js';
+		config.recorderWorkerPath = /*config.recorderWorkerPath || RECORDER_WORKER_PATH*/;
 		config.onReadyForSpeech = config.onReadyForSpeech || function() {};
 		config.onEndOfSpeech = config.onEndOfSpeech || function() {};
 		config.onPartialResults = config.onPartialResults || function(data) {};
