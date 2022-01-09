@@ -76,14 +76,14 @@
 
 		// Set up the recorder (incl. asking permission)
 		// Initializes audioContext
-		// Can be called multiple times. 
+		// Can be called multiple times.
 		// TODO: call something on success (MSG_INIT_RECORDER is currently called)
 		this.init = function() {
 			var audioSourceConstraints = {};
 			config.onEvent(MSG_WAITING_MICROPHONE, "Waiting for approval to access your microphone ...");
 			try {
 				window.AudioContext = window.AudioContext || window.webkitAudioContext;
-				navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+				navigator.getUserMedia = /*navigator.getUserMedia ||*/ navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 				window.URL = window.URL || window.webkitURL;
 				audioContext = new AudioContext();
 			} catch (e) {
