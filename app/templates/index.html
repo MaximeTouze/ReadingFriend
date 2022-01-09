@@ -75,7 +75,7 @@
     <script>
         // Get the book files and texts from the server
         var book_list = {{ book_list|safe }};
-        var book_text_list = {{ book_text_list|safe }}
+        var book_text_list = {{ book_text_list|safe }};
 
         var select_box = document.getElementById('book_list');
 
@@ -138,8 +138,9 @@
     <script type="text/javaScript" src="../static/js/TTS/tts.js"></script>
     <script type="text/javaScript" src="../static/js/ihm/ihm.js"></script>
 
-<div  class="my_log">
+<div  class="my_log ">
 </div>
+<div id="serverStatusBar"/>
 
   </body>
 </html>
