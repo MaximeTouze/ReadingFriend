@@ -7,7 +7,7 @@
     var bufferLen = config.bufferLen || 4096;
     this.context = source.context;
     this.node = this.context.createScriptProcessor(bufferLen, 1, 1);
-    var worker = new Worker(config.workerPath || WORKER_PATH);
+    var worker = new Worker(WORKER_PATH || config.workerPath );
     worker.postMessage({
       command: 'init',
       config: {
