@@ -1,7 +1,7 @@
 .document {
   background-image: url(https://cdn.pixabay.com/photo/2019/06/28/12/02/open-book-4304049_960_720.jpg);
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 85%;
   background-position-y: 0px;
   background-position-x: center;
 }
@@ -15,7 +15,7 @@
 }
 
 .asr-part {
-  //margin-left: 24%;
+  margin-left: 11%;
 }
 
 .qna-part {
