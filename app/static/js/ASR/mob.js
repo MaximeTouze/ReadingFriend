@@ -100,14 +100,14 @@ var dictate = new Dictate({
 		},
 		onPartialResults : function(hypos) {
       console.warn("n'a ça mébon", hypos[0].transcript);
-      if(hasQuote(hypos[0].transcript)) {
+      if(hasQuoteBeggining(hypos[0].transcript)) {
         quote = getQuote(hypos[0].transcript);
         hypText = prettyfyHyp(quote, doUpper, doPrependSpace);
   			val = $("#question").val();
-  			$("#question").val(/*val.slice(0, startPosition) +*/ hypText /*+ val.slice(endPosition)*/ + '?');
+  			$("#question").val(val.slice(0, startPosition) + hypText + val.slice(endPosition) + '?');
   			endPosition = startPosition + hypText.length;
   			$("#question").prop("selectionStart", endPosition);
-      }else {
+      }else{
         clearTranscription();
       }
 		},
@@ -230,9 +230,12 @@ const END_MESSAGE = ["Merci", "merci"];
   }
 
 	function hasQuote (text) {
-    console.error("quote test", text, getStartIndex(text) !== -1, getEndIndex(text) !== -1);
-		return (getStartIndex(text) !== -1 && getEndIndex(text) !== -1);
+    return (hasQuoteBeggining(text) && getEndIndex(text) !== -1);
 	}
+
+  function hasQuoteBeggining (text) {
+    return (getStartIndex(text) !== -1);
+  }
 
 // methode adaptable
 	function getStartIndex (text) {
