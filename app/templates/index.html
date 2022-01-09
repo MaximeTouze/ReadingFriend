@@ -1,101 +1,155 @@
+
 <!DOCTYPE html>
-
 <html lang="en" dir="ltr" class="document">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="LIUM lst; Maxime Touzé; Hugo Riguidel">
 
-    <head>
-        <meta charset="utf-8">
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="icon" type="image/png" href="../static/img/favicon.png"/>
+    <title>My Reading Friend</title>
 
-        <link rel="icon" type="image/png" href="../static/img/favicon.png"/>
-        <title>My Reading Friend</title>
-
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"/>
-
-        <script type="text/javaScript" src="../static/js/index.js"></script>
-        <script type="text/javaScript" src="../static/js/ASR/asr.js"></script>
-        <script type="text/javaScript" src="../static/js/QNA/qna.js"></script>
-        <script type="text/javaScript" src="../static/js/TTS/tts.js"></script>
-        <script type="text/javaScript" src="../static/js/ihm/ihm.js"></script>
-        <script type="text/javaScript" src="../static/js/common.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"/>
+    <script type="text/javaScript" src="../index.js"></script>
 
 
-    </head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}"/>
 
-    <body>
-        <h1 class="title">
-            Reading Friend (ou un truc du genre)
-        </h1>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap-theme.min.css') }}"/>
 
-        <div id = "ASR" class="asr-part page-part">
-            <h1 id="ASR-title">Question posée</h1>
-            <div id = "ASR-part">
-                asr
-            </div>
-        </div>
 
-        <div id = "QNA" class="qna-part page-part">
-            <select id="book_list">
-                <option hidden disabled selected value> Select a book </option>
-            </select>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/demo.css') }}"/>
 
-            <script>
-                // Get the book files and texts from the server
-                var book_list = {{ book_list|safe }};
-                var book_text_list = {{ book_text_list|safe }}
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-                var select_box = document.getElementById('book_list');
+  <body>
 
-                // Creates select element's options
-                for(var i = 0; i < book_list.length; i++)
-                {
-                    var option = document.createElement('option');
-                    option.appendChild(document.createTextNode(book_list[i].replaceAll('_', ' ').slice(0, -4))); // Replaces '_' by a space and remove the '.txt' at the end of the file names
-                    option.value = book_text_list[i];
-                    select_box.appendChild(option);
-                }
+    <div class="container">
 
-                // Loads the book's text upon selection
-                document.getElementById('book_list').addEventListener('change', function (e)
-                {
-                    document.getElementById('text').value = e.target.value;
-                });
-            </script>
+<span id="serverStatusBar" title="Number of available workers"></span>
 
-            <br>
+<div class="buttonsContainer">
 
-            <form action="/submit" method="POST">
-                <label for="text"> Texte : </label> <br>
-                <textarea rows="20" cols="60" id="text" name="text"> </textarea>
-                <br>
-                <label for="text"> Question : </label> <br>
-                <input type="text" id="question" name="question"> <br>
-                <br>
-                <input type="submit" value="Submit">
-            </form>
+<select id="servers" name="servers" style="margin-top:.5em">
+  <option value="ws://lst-demo.univ-lemans.fr:8888/client/ws/speech|ws://lst-demo.univ-lemans.fr:8888/client/ws/status" selected="selected">Francais</option>
+  <option value="ws://lst-demo.univ-lemans.fr:8889/client/ws/speech|ws://lst-demo.univ-lemans.fr:8889/client/ws/status">English</option>
+</select>
 
-            <br>
+<span class="buttons">
+<button
+	id="buttonToggleListening"
+	onclick="toggleListening();"
+	title="Starts/stops listening for speech.">Unmute</button>
+<!--button
+	id="buttonCancel"
+	disabled="disabled"
+	onclick="cancel();"
+	title="Cancels the speech recognition.">Cancel</button>
+<button
+    onclick="clearTranscription();"
+    title="Clears the transcription">Clear</button-->
+</span>
+</div>
+    <h1 class="title">
+      Reading Friend (ou un truc du genre)
+    </h1>
 
-            <label for="answer"> Réponse : </label> <br>
-            <p id="answer"> {{answer}} </p>
+    <div id = "ASR" class="asr-part page-part">
+      <h1 id="ASR-title">Question posée</h1>
+      <textarea id="trans" rows="5" style="width:100%; margin-top:.5em">
+</textarea>
+    </div>
 
-            <audio src="{{ url_for('static', filename = '0_20180505_deepvoice3_checkpoint_step000640000.wav') }}" controls>
-        </div>
-    </body>
+    <div id = "QNA" class="qna-part page-part">
+      <select id="book_list">
+      </select>
 
-    <footer>
-        <div id="num_workers">Workers : ....</div>
-        <div id="num_workers_synth">Workers TTS : ....</div>
-    </footer>
+      <!--<script>
+        var x = function(a,b,c)
+        {
+          c = new XMLHttpRequest;
+          c.open('GET', a);
+          c.onload = b;
+          c.send()
+        }
 
-    <button onclick="envoyer(null)"> ASR </button>
-    <button onclick="synthese(document.getElementById('answer').value)"> TTS </button>
-    <button onclick="console.log(recordedAudio)"> Affiches l enregistrement </button>
+        var display = function()
+        {
+          var books = JSON.parse(this.response);
 
-    <button onclick="changeChamps()"> ChangeChamps </button>
+          document.write(books)
 
-    <script type="text/javaScript">
-        changeASR("hyyyyyyyyyyyyyyeppeezahdapi zuazdazudazudiauhdipuazhd pauz hpiu hazuih aipudh oahodzhua hdpazu hpiuauh zpiuhd paz hdpiuazh pdiuazh dpiuazhdp hdazpiudh azpuhd pauzh dpiuazh dpiuazh ppiuduah ziuph dzapu udhazph ");
-        //changeQNA("azdjiaz hdâiozh oia hiuh iaudg idbjhwjkywg ljl li ieu    uheu aih iu hhfdsk fkmjds hfmshdmf zp foeifiif eufyu agi hhuahnsj ndqb vxw, ckvj,k jmz vb;j: welkhkie jhlufe umuf ze ihezo hfoezi zoif oiezhf oiez hfhzeo");
-    </script>
+          for(let book of books)
+          {
+            var select = document.getElementById("book_list");
+            var length = select.length;
+            document.book_list[length] = new Option(book);
+          }
+        }
 
+        window.onload = function()
+        {
+          x('../static/books.php', display);
+        }
+      </script>-->
+
+      <br>
+      <br>
+
+      <form action="/submit" method="POST">
+        <label for="text"> Texte : </label> <br>
+        <textarea rows="5" cols="80" id="text" name="text"> </textarea>
+        <br>
+        <label for="text"> Question : </label> <br>
+        <input type="text" id="question" name="question"> <br>
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+
+      <br>
+
+      <label for="answer"> Réponse : </label> <br>
+      <p id="answer"> {{answer}} </p>
+
+      <a href="/return-files/"> <button> Download! </button> </a>
+
+      <!--<audio id="tts_file" src="./../app/tts/0_20180505_deepvoice3_checkpoint_step000640000.wav" preload="auto"></audio>
+      <button onclick="document.getElementById('tts_file').play();">TTS</button>-->
+    </div>
+
+<hr/>
+
+
+
+
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="../static/js/ASR/bootstrap.min.js"></script>
+
+    <script src="../static/js/ASR/dictate.js"></script>
+    <script src="../static/js/ASR/recorder.js"></script>
+    <script src="../static/js/ASR/mob.js"></script>
+
+    <script type="text/javaScript" src="../static/js/QNA/qna.js"></script>
+    <script type="text/javaScript" src="../static/js/TTS/tts.js"></script>
+    <script type="text/javaScript" src="../static/js/ihm/ihm.js"></script>
+
+<div  class="my_log">
+</div>
+
+  </body>
 </html>
