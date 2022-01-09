@@ -19,7 +19,7 @@
 }
 
 .qna-part {
-  margin-left: 52%;
+  margin-left: 10%;
 }
 
 .page-part {
@@ -27,5 +27,8 @@
   font-size: 20px;
   display: inline-block;
   position: absolute;
-  max-width: 25%
+  max-width: 25%;
+}
+.parts_container {
+  margin-top: 5%;
 }
