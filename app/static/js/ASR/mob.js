@@ -63,9 +63,9 @@ var dictate = new Dictate({
 			$("#buttonToggleListening").addClass('highlight');
 			$("#buttonToggleListening").prop("disabled", false);
 			$("#buttonCancel").prop("disabled", false);
-			startPosition = $("#trans").prop("selectionStart");
+			startPosition = $("#question").prop("selectionStart");
 			endPosition = startPosition;
-			var textBeforeCaret = $("#trans").val().slice(0, startPosition);
+			var textBeforeCaret = $("#question").val().slice(0, startPosition);
 			if ((textBeforeCaret.length == 0) || /\. *$/.test(textBeforeCaret) ||  /\n *$/.test(textBeforeCaret)) {
 				doUpper = true;
 			} else {
@@ -102,12 +102,13 @@ var dictate = new Dictate({
       console.warn("n'a ça mébon", hypos[0].transcript);
       if(hasQuote(hypos[0].transcript)) {
         quote = getQuote(hypos[0].transcript);
-        clearTranscription();
         hypText = prettyfyHyp(quote, doUpper, doPrependSpace);
-  			val = $("#trans").val();
-  			$("#trans").val(/*val.slice(0, startPosition) +*/ hypText /*+ val.slice(endPosition)*/ + '?');
+  			val = $("#question").val();
+  			$("#question").val(/*val.slice(0, startPosition) +*/ hypText /*+ val.slice(endPosition)*/ + '?');
   			endPosition = startPosition + hypText.length;
-  			$("#trans").prop("selectionStart", endPosition);
+  			$("#question").prop("selectionStart", endPosition);
+      }else {
+        clearTranscription();
       }
 		},
 		onResults : function(hypos) {
@@ -116,14 +117,15 @@ var dictate = new Dictate({
         console.log(quote);
         clearTranscription();
   			hypText = prettyfyHyp(quote, doUpper, doPrependSpace);
-  			val = $("#trans").val();
-  			$("#trans").val(/*val.slice(0, startPosition) +*/ hypText /*+ val.slice(endPosition)*/ + '?');
+  			val = $("#question").val();
+  			$("#question").val(/*val.slice(0, startPosition) +*/ hypText /*+ val.slice(endPosition)*/ + '?');
   			startPosition = startPosition + hypText.length;
   			endPosition = startPosition;
-  			$("#trans").prop("selectionStart", endPosition);
+  			$("#question").prop("selectionStart", endPosition);
   			if (/\. *$/.test(hypText) ||  /\n *$/.test(hypText)) {
   				doUpper = true;
   			} else {
+          clearTranscription();
   				doUpper = false;
   			}
   			doPrependSpace = (hypText.length > 0) && !(/\n *$/.test(hypText));
@@ -171,10 +173,10 @@ function cancel() {
 }
 
 function clearTranscription() {
-	$("#trans").val("");
+	$("#question").val("");
 	// needed, otherwise selectionStart will retain its old value
-	$("#trans").prop("selectionStart", 0);
-	$("#trans").prop("selectionEnd", 0);
+	$("#question").prop("selectionStart", 0);
+	$("#question").prop("selectionEnd", 0);
 }
 
 $(document).ready(function() {
