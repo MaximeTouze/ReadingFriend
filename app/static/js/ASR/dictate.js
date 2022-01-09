@@ -76,7 +76,7 @@
 
 		// Set up the recorder (incl. asking permission)
 		// Initializes audioContext
-		// Can be called multiple times.
+		// Can be called multiple times. 
 		// TODO: call something on success (MSG_INIT_RECORDER is currently called)
 		this.init = function() {
 			var audioSourceConstraints = {};
@@ -205,7 +205,7 @@
                         //Firefox loses the audio input stream every five seconds
                         // To fix added the input to window.source
                         window.source = input;
-                        
+
 			// make the analyser available in window context
 			window.userSpeechAnalyser = audioContext.createAnalyser();
 			input.connect(window.userSpeechAnalyser);
