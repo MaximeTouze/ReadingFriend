@@ -47,7 +47,7 @@
 		config.referenceHandler = config.referenceHandler || REFERENCE_HANDLER;
 		config.contentType = config.contentType || CONTENT_TYPE;
 		config.interval = config.interval || INTERVAL;
-		config.recorderWorkerPath = /*config.recorderWorkerPath || RECORDER_WORKER_PATH*/;
+		config.recorderWorkerPath = /onfig.recorderWorkerPath || RECORDER_WORKER_PATH;
 		config.onReadyForSpeech = config.onReadyForSpeech || function() {};
 		config.onEndOfSpeech = config.onEndOfSpeech || function() {};
 		config.onPartialResults = config.onPartialResults || function(data) {};
