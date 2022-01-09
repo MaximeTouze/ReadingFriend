@@ -33,31 +33,29 @@
 
   <body>
 
-    <div class="container">
-
-<span id="serverStatusBar" title="Number of available workers"></span>
+    <!--div class="container"-->
 
 <div class="buttonsContainer">
 
-<select id="servers" name="servers" style="margin-top:.5em">
-  <option value="ws://lst-demo.univ-lemans.fr:8888/client/ws/speech|ws://lst-demo.univ-lemans.fr:8888/client/ws/status" selected="selected">Francais</option>
-  <option value="ws://lst-demo.univ-lemans.fr:8889/client/ws/speech|ws://lst-demo.univ-lemans.fr:8889/client/ws/status">English</option>
-</select>
+  <select id="servers" name="servers" style="margin-top:.5em">
+    <option value="ws://lst-demo.univ-lemans.fr:8888/client/ws/speech|ws://lst-demo.univ-lemans.fr:8888/client/ws/status" selected="selected">Francais</option>
+    <option value="ws://lst-demo.univ-lemans.fr:8889/client/ws/speech|ws://lst-demo.univ-lemans.fr:8889/client/ws/status">English</option>
+  </select>
 
-<span class="buttons">
-<button
-	id="buttonToggleListening"
-	onclick="toggleListening();"
-	title="Starts/stops listening for speech.">Unmute</button>
-<!--button
-	id="buttonCancel"
-	disabled="disabled"
-	onclick="cancel();"
-	title="Cancels the speech recognition.">Cancel</button>
-<button
-    onclick="clearTranscription();"
-    title="Clears the transcription">Clear</button-->
-</span>
+  <span class="buttons">
+    <button
+    	id="buttonToggleListening"
+    	onclick="toggleListening();"
+    	title="Starts/stops listening for speech.">Unmute</button>
+    <!--button
+    	id="buttonCancel"
+    	disabled="disabled"
+    	onclick="cancel();"
+    	title="Cancels the speech recognition.">Cancel</button>
+    <button
+        onclick="clearTranscription();"
+        title="Clears the transcription">Clear</button-->
+  </span>
 </div>
     <h1 class="companion_title">
       Reading Friend (ou un truc du genre)
