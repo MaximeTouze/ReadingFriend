@@ -125,7 +125,6 @@ var dictate = new Dictate({
   			if (/\. *$/.test(hypText) ||  /\n *$/.test(hypText)) {
   				doUpper = true;
   			} else {
-          clearTranscription();
   				doUpper = false;
   			}
   			doPrependSpace = (hypText.length > 0) && !(/\n *$/.test(hypText));
