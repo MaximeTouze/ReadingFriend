@@ -99,11 +99,11 @@ var dictate = new Dictate({
 			}
 		},
 		onPartialResults : function(hypos) {
-      if(hasQuoteBeggining(hypos[0].transcript)) {
+      if(hasQuote(hypos[0].transcript)) {
         quote = getQuote(hypos[0].transcript);
         hypText = prettyfyHyp(quote, doUpper, doPrependSpace);
   			val = $("#question").val();
-  			$("#question").val(val.slice(0, startPosition) + hypText + val.slice(endPosition) + '?');
+  			$("#question").val(hypText);
   			endPosition = startPosition + hypText.length;
   			$("#question").prop("selectionStart", endPosition);
       }else{
