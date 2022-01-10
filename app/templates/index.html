@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap-theme.min.css') }}"/>
 
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/demo.css') }}"/> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/demo.css') }}"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -97,7 +97,7 @@
 
     <br>
 
-    <form action="/submit" method="POST">
+    <form action="/submit"  id="submit_quote" method="POST">
         <label for="text"> Texte : </label> <br>
         <textarea rows="20" cols="60" id="text" name="text"> </textarea>
         <br>

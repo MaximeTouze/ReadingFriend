@@ -99,7 +99,6 @@ var dictate = new Dictate({
 			}
 		},
 		onPartialResults : function(hypos) {
-      console.warn("n'a ça mébon", hypos[0].transcript);
       if(hasQuoteBeggining(hypos[0].transcript)) {
         quote = getQuote(hypos[0].transcript);
         hypText = prettyfyHyp(quote, doUpper, doPrependSpace);
@@ -114,7 +113,6 @@ var dictate = new Dictate({
 		onResults : function(hypos) {
       if(hasQuote(hypos[0].transcript)) {
         quote = getQuote(hypos[0].transcript);
-        console.log(quote);
         clearTranscription();
   			hypText = prettyfyHyp(quote, doUpper, doPrependSpace);
   			val = $("#question").val();
@@ -129,7 +127,7 @@ var dictate = new Dictate({
   			}
   			doPrependSpace = (hypText.length > 0) && !(/\n *$/.test(hypText));
       }
-      console.log( "==================>>>>>>>", "TODO => brancher le qna");
+      $("#submit_quote").submit();
 		},
 		onError : function(code, data) {
 			dictate.cancel();
