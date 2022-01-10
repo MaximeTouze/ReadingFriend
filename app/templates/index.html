@@ -62,9 +62,6 @@
     </h1>
   <div class="parts_container">
 
-
-
-
     <br>
 
     <form action="/submit"  id="submit_quote" method="POST">
@@ -84,28 +81,6 @@
               <option hidden disabled selected value> Select a book </option>
           </select>
 
-          <script>
-              // Get the book files and texts from the server
-              var book_list = {{ book_list|safe }};
-              var book_text_list = {{ book_text_list|safe }};
-
-              var select_box = document.getElementById('book_list');
-
-              // Creates select element's options
-              for(var i = 0; i < book_list.length; i++)
-              {
-                  var option = document.createElement('option');
-                  option.appendChild(document.createTextNode(book_list[i].replaceAll('_', ' ').slice(0, -4))); // Replaces '_' by a space and remove the '.txt' at the end of the file names
-                  option.value = book_text_list[i];
-                  select_box.appendChild(option);
-              }
-
-              // Loads the book's text upon selection
-              document.getElementById('book_list').addEventListener('change', function (e)
-              {
-                  document.getElementById('text').value = e.target.value;
-              });
-          </script>
         <label for="text"> Texte : </label> <br>
         <textarea rows="20" cols="60" id="text" name="text"> </textarea>
 
@@ -142,6 +117,29 @@
     <script type="text/javaScript" src="../static/js/QNA/qna.js"></script>
     <script type="text/javaScript" src="../static/js/TTS/tts.js"></script>
     <script type="text/javaScript" src="../static/js/ihm/ihm.js"></script>
+
+    <script>
+        // Get the book files and texts from the server
+        var book_list = {{ book_list|safe }};
+        var book_text_list = {{ book_text_list|safe }};
+
+        var select_box = document.getElementById('book_list');
+
+        // Creates select element's options
+        for(var i = 0; i < book_list.length; i++)
+        {
+            var option = document.createElement('option');
+            option.appendChild(document.createTextNode(book_list[i].replaceAll('_', ' ').slice(0, -4))); // Replaces '_' by a space and remove the '.txt' at the end of the file names
+            option.value = book_text_list[i];
+            select_box.appendChild(option);
+        }
+
+        // Loads the book's text upon selection
+        document.getElementById('book_list').addEventListener('change', function (e)
+        {
+            document.getElementById('text').value = e.target.value;
+        });
+    </script>
 
 <div  class="my_log ">
 </div>

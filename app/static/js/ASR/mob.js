@@ -127,6 +127,7 @@ var dictate = new Dictate({
   			}
   			doPrependSpace = (hypText.length > 0) && !(/\n *$/.test(hypText));
       }
+      console.warn("J envoie la question", quote);
       $("#submit_quote").submit();
 		},
 		onError : function(code, data) {
@@ -153,7 +154,7 @@ function __serverStatus(msg) {
 }
 
 function __updateTranscript(text) {
-	$("#trans").val(text);
+	$("#question").val(text);
 }
 
 // Public methods (called from the GUI)
