@@ -145,7 +145,7 @@ function __message(code, data) {
 }
 
 function __error(code, data) {
-	console.error("ERR: " + code + ": " + (data || '') + "\n" + log.innerHTML);
+	console.error("ERR: " + code + ": " + (data || ''));
 }
 
 function __serverStatus(msg) {
