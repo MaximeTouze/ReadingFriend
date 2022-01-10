@@ -128,7 +128,7 @@ var dictate = new Dictate({
   			doPrependSpace = (hypText.length > 0) && !(/\n *$/.test(hypText));
       }
       console.warn("J envoie la question", quote);
-      $("#submit_quote").submit();
+      $("#submit_quote").click();
 		},
 		onError : function(code, data) {
 			dictate.cancel();
