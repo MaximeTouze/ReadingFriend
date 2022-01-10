@@ -77,14 +77,14 @@ var dictate = new Dictate({
 			__message("END OF SPEECH");
 
 			$("#buttonToggleListening").html('Muting...');
-			$("#buttonToggleListening").prop("disabled", true);
+			//$("#buttonToggleListening").prop("disabled", true);
 		},
 		onEndOfSession : function() {
 			isConnected = false;
 			__message("END OF SESSION");
 			$("#buttonToggleListening").html('Unmute');
 			$("#buttonToggleListening").removeClass('highlight');
-			$("#buttonToggleListening").prop("disabled", false);
+			//$("#buttonToggleListening").prop("disabled", false);
 			$("#buttonCancel").prop("disabled", true);
 		},
 		onServerStatus : function(json) {
@@ -95,7 +95,7 @@ var dictate = new Dictate({
 			if (json.num_workers_available == 0 && ! isConnected) {
 				$("#buttonToggleListening").prop("disabled", true);
 			} else {
-				$("#buttonToggleListening").prop("disabled", false);
+				//$("#buttonToggleListening").prop("disabled", false);
 			}
 		},
 		onPartialResults : function(hypos) {
@@ -116,7 +116,7 @@ var dictate = new Dictate({
         clearTranscription();
   			hypText = prettyfyHyp(quote, doUpper, doPrependSpace);
   			val = $("#question").val();
-  			$("#question").val(/*val.slice(0, startPosition) +*/ hypText /*+ val.slice(endPosition)*/ + '?');
+  			$("#question").val(/*val.slice(0, startPosition) +*/ hypText /*+ val.slice(endPosition)*/);
   			startPosition = startPosition + hypText.length;
   			endPosition = startPosition;
   			$("#question").prop("selectionStart", endPosition);
