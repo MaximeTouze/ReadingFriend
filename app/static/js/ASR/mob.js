@@ -106,6 +106,7 @@ var dictate = new Dictate({
   			$("#question").val(hypText);
   			endPosition = startPosition + hypText.length;
   			$("#question").prop("selectionStart", endPosition);
+        $("#submit_quote").submit();
       }else{
         clearTranscription();
       }
