@@ -32,3 +32,8 @@
 .parts_container {
   margin-top: 5%;
 }
+
+.question {
+  padding-right: 100%;
+  padding-bottom: 75%;
+}

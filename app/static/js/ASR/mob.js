@@ -150,7 +150,7 @@ function __error(code, data) {
 }
 
 function __serverStatus(msg) {
-	serverStatusBar.innerHTML = msg;
+	//serverStatusBar.innerHTML = msg;
 }
 
 function __updateTranscript(text) {
