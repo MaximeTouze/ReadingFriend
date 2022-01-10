@@ -191,8 +191,8 @@ $(document).ready(function() {
 
 
 
-const START_MESSAGE = ["Compagnon", "compagnon"];
-const END_MESSAGE = ["Merci", "merci"];
+const START_MESSAGE = ["Compagnon", "compagnon", "companion", "Companion", "Campaign", "campaign", "Campagne", "campagne"];
+const END_MESSAGE = ["Merci", "merci", "Please", "please", "Plus", "plus"];
 
 
 // returns the question: without the beginning and the end tokens
