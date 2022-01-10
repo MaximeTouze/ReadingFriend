@@ -46,7 +46,6 @@
     <button
     	id="buttonToggleListening"
     	onclick="toggleListening();"
-      disabled="false"
     	title="Starts/stops listening for speech.">Unmute</button>
     <!--button
     	id="buttonCancel"
@@ -63,61 +62,63 @@
     </h1>
   <div class="parts_container">
 
-    <div id = "ASR" class="asr-part page-part">
-      <textarea id="trans" rows="5" style="width:100%; margin-top:.5em; padding-right: 20em;">
-
-      </textarea>
-
-      <form action="/submit"  id="submit_quote" method="POST">
-          <label for="text"> Texte : </label> <br>
-          <textarea rows="20" cols="60" id="text" name="text"> </textarea>
-          <br>
-          <label for="text"> Question : </label> <br>
-          <input type="text" id="question" name="question"> <br>
-          <br>
-          <input type="submit" value="Submit">
-      </form>
-
-
-<div id = "QNA" class="qna-part page-part">
-    <select id="book_list">
-        <option hidden disabled selected value> Select a book </option>
-    </select>
-
-    <script>
-        // Get the book files and texts from the server
-        var book_list = {{ book_list|safe }};
-        var book_text_list = {{ book_text_list|safe }};
-
-        var select_box = document.getElementById('book_list');
-
-        // Creates select element's options
-        for(var i = 0; i < book_list.length; i++)
-        {
-            var option = document.createElement('option');
-            option.appendChild(document.createTextNode(book_list[i].replaceAll('_', ' ').slice(0, -4))); // Replaces '_' by a space and remove the '.txt' at the end of the file names
-            option.value = book_text_list[i];
-            select_box.appendChild(option);
-        }
-
-        // Loads the book's text upon selection
-        document.getElementById('book_list').addEventListener('change', function (e)
-        {
-            document.getElementById('text').value = e.target.value;
-        });
-    </script>
-
-    <br>
 
 
 
     <br>
 
-    <label for="answer"> Réponse : </label> <br>
-    <p id="answer"> {{answer}} </p>
+    <form action="/submit"  id="submit_quote" method="POST">
+      <div id = "ASR" class="asr-part page-part">
+        <textarea id="trans" rows="5" style="width:100%; margin-top:.5em; padding-right: 20em;">
+  </textarea>
 
-    <audio src="{{ url_for('static', filename = '0_20180505_deepvoice3_checkpoint_step000640000.wav') }}" controls>
-</div>
+      <label for="text"> Question : </label> <br>
+      <input type="text" id="question" name="question"> <br>
+      <br>
+      <input type="submit" value="Submit">
+
+      </div>
+
+      <div id = "QNA" class="qna-part page-part">
+          <select id="book_list">
+              <option hidden disabled selected value> Select a book </option>
+          </select>
+
+          <script>
+              // Get the book files and texts from the server
+              var book_list = {{ book_list|safe }};
+              var book_text_list = {{ book_text_list|safe }};
+
+              var select_box = document.getElementById('book_list');
+
+              // Creates select element's options
+              for(var i = 0; i < book_list.length; i++)
+              {
+                  var option = document.createElement('option');
+                  option.appendChild(document.createTextNode(book_list[i].replaceAll('_', ' ').slice(0, -4))); // Replaces '_' by a space and remove the '.txt' at the end of the file names
+                  option.value = book_text_list[i];
+                  select_box.appendChild(option);
+              }
+
+              // Loads the book's text upon selection
+              document.getElementById('book_list').addEventListener('change', function (e)
+              {
+                  document.getElementById('text').value = e.target.value;
+              });
+          </script>
+        <label for="text"> Texte : </label> <br>
+        <textarea rows="20" cols="60" id="text" name="text"> </textarea>
+
+            <label for="answer"> Réponse : </label> <br>
+            <p id="answer"> {{answer}} </p>
+
+            <audio src="{{ url_for('static', filename = '0_20180505_deepvoice3_checkpoint_step000640000.wav') }}" controls>
+        </div>
+        <br>
+    </form>
+
+    <br>
+
 
 </div>
 <hr/>
