@@ -112,7 +112,9 @@ var dictate = new Dictate({
 		},
 		onResults : function(hypos) {
       if(hasQuote(hypos[0].transcript)) {
+        console.warn(true);
         quote = getQuote(hypos[0].transcript);
+        console.warn(quote);
         clearTranscription();
   			hypText = prettyfyHyp(quote, doUpper, doPrependSpace);
   			val = $("#question").val();
