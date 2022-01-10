@@ -46,6 +46,7 @@
     <button
     	id="buttonToggleListening"
     	onclick="toggleListening();"
+      disabled="false"
     	title="Starts/stops listening for speech.">Unmute</button>
     <!--button
     	id="buttonCancel"
@@ -64,7 +65,18 @@
 
     <div id = "ASR" class="asr-part page-part">
       <textarea id="trans" rows="5" style="width:100%; margin-top:.5em; padding-right: 20em;">
-</textarea>
+
+      </textarea>
+
+      <form action="/submit"  id="submit_quote" method="POST">
+          <label for="text"> Texte : </label> <br>
+          <textarea rows="20" cols="60" id="text" name="text"> </textarea>
+          <br>
+          <label for="text"> Question : </label> <br>
+          <input type="text" id="question" name="question"> <br>
+          <br>
+          <input type="submit" value="Submit">
+      </form>
 
 
 <div id = "QNA" class="qna-part page-part">
@@ -97,15 +109,7 @@
 
     <br>
 
-    <form action="/submit"  id="submit_quote" method="POST">
-        <label for="text"> Texte : </label> <br>
-        <textarea rows="20" cols="60" id="text" name="text"> </textarea>
-        <br>
-        <label for="text"> Question : </label> <br>
-        <input type="text" id="question" name="question"> <br>
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+
 
     <br>
 
